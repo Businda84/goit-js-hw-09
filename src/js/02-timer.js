@@ -10,10 +10,12 @@ const options = {
     minuteIncrement: 1,
   
     onClose(selectedDates) {
-        if (selectedDates[0]<=currentTime) {
-           Notiflix.Notify.failure("Please choose a date in the future");
-        } else startBtn.disabled = false;
-  console.log(selectedDates[0]);
+        if (selectedDates[0] <= new Date()) {
+            Notiflix.Notify.failure("Please choose a date in the future");
+        } else {
+            startBtn.disabled = false;
+            console.log(selectedDates[0]);
+        };
   },
 };
 
@@ -29,7 +31,7 @@ const delay = 1000;
 
 startBtn.disabled = true;
 
-let currentTime = new Date();
+
 
 
 flatpickr(inputDateEl, options);
@@ -38,8 +40,11 @@ flatpickr(inputDateEl, options);
 startBtn.addEventListener('click', clickBtnStart);
 function clickBtnStart() {
     intervalId = setInterval(() => {
-    
-       
+     
+  
+        const selectedTime = new Date(input.value);
+        const timeValue = selectedTime - new Date();
+              console.log(selectedTime);
         if (currentTime === null || intervalId === null) {
             return;
         }
@@ -52,7 +57,7 @@ function clickBtnStart() {
           
         timer();
     }
-)};
+),delay};
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -72,7 +77,10 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
-
+   
+function addLeadingZero(value){
+return String(value).padStart(2, '0');
+}
 
 function timer() {
 
@@ -87,10 +95,6 @@ function timer() {
         return;
     }
 
-}
-   
-function addLeadingZero(value){
-return String(value).padStart(2, '0');
 }
 
 
