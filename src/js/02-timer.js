@@ -26,8 +26,9 @@ const refs = {
     seconds:document.querySelector('data-seconds'),
 }
 const delay = 1000;
+
 startBtn.disabled = true;
-// let currentTime = null;
+
 let currentTime = new Date();
 
 
@@ -37,9 +38,21 @@ flatpickr(inputDateEl, options);
 startBtn.addEventListener('click', clickBtnStart);
 function clickBtnStart() {
     intervalId = setInterval(() => {
+    
+       
+        if (currentTime === null || intervalId === null) {
+            return;
+        }
+        currentTime -= delay;
+        if (currentTime < 0) {
+            clearInterval(intervalId);
+            intervalId = null;
+            return;
+        }
+          
         timer();
-    },delay)
-};
+    }
+)};
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -62,6 +75,8 @@ function convertMs(ms) {
 
 
 function timer() {
+
+    const differenceInTime = selectedDates[0] - currentTime;
     if (currentTime === null || intervalId === null) {
         return;
     }
@@ -77,5 +92,5 @@ function timer() {
 function addLeadingZero(value){
 return String(value).padStart(2, '0');
 }
-console.log(convertMs);
-function updateTime(value){}
+
+
