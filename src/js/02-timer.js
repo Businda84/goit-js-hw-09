@@ -76,7 +76,7 @@ function convertMs(ms) {
 
 function timer() {
 
-    const differenceInTime = selectedDates[0] - currentTime;
+
     if (currentTime === null || intervalId === null) {
         return;
     }
