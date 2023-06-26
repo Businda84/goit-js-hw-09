@@ -3,24 +3,9 @@ import flatpickr from "flatpickr";
 import Notiflix from 'notiflix';
 import "flatpickr/dist/flatpickr.min.css";
 
-const options = {
-  enableTime: true,
-  time_24hr: true,
-  defaultDate: new Date(),
-    minuteIncrement: 1,
-  
-    onClose(selectedDates) {
-        if (selectedDates[0] <= new Date()) {
-            Notiflix.Notify.failure("Please choose a date in the future");
-        } else {
-            startBtn.disabled = false;
-            console.log(selectedDates[0]);
-        };
-  },
-};
 
 const inputDateEl = document.getElementById('datetime-picker')
-const startBtn = document.querySelector('[data-start]')
+const startBtnEl = document.querySelector('[data-start]')
 const refs = {
     days: document.querySelector('[data-days]'),
     hours: document.querySelector('data-hours'),
@@ -28,36 +13,51 @@ const refs = {
     seconds:document.querySelector('data-seconds'),
 }
 const delay = 1000;
-
-startBtn.disabled = true;
-
-
-
+startBtnEl.disabled = true;
+const options = {
+  enableTime: true,
+  time_24hr: true,
+  defaultDate: new Date(),
+    minuteIncrement: 1,
+  
+    onClose(selectedDates) {
+      onInputDate(selectedDates[0]);
+      console.log(onInputDate);
+  },
+};
 
 flatpickr(inputDateEl, options);
 
+startBtnEl.addEventListener('click', clickBtnStart);
 
-startBtn.addEventListener('click', clickBtnStart);
+
+
+
+function onInputDate(date) {
+  const currentTate = new Date();
+  console.log(date);
+  console.log(currentTate);
+  if (currentTate >= date) {
+    Notiflix.Notify.failure("Please choose a date in the future");
+  } else {
+    startBtnEl.disabled = false;
+  }
+}
+
+
 function clickBtnStart() {
-    let intervalId = setInterval(() => {
-     
+
+
+  let intervalId = setInterval(() => {
+
   
-        const selectedTime = new Date(input.value);
-        const timeValue = selectedTime - new Date();
-             
-        if (timeValue>=0) {
-          let timeLeft
-        }
-        currentTime -= delay;
-        if (currentTime < 0) {
-            clearInterval(intervalId);
-            intervalId = null;
-            return;
-        }
-          
-        timer();
-    }
-),delay};
+},delay)
+  if (restOfTime<0) {
+    clearInterval(intervalId)
+    return
+}
+
+};
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -82,19 +82,14 @@ function addLeadingZero(value){
 return String(value).padStart(2, '0');
 }
 
-// function timer() {
+function timer() {
+    currentTime -= delay;
+    if (currentTime < 0) {
+        clearInterval(intervalId);
+        intervalId = null;
+        return;
+    }
 
-
-//     if (currentTime === null || intervalId === null) {
-//         return;
-//     }
-//     currentTime -= delay;
-//     if (currentTime < 0) {
-//         clearInterval(intervalId);
-//         intervalId = null;
-//         return;
-//     }
-
-// }
+}
 
 
