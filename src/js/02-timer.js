@@ -39,14 +39,14 @@ flatpickr(inputDateEl, options);
 
 startBtn.addEventListener('click', clickBtnStart);
 function clickBtnStart() {
-    intervalId = setInterval(() => {
+    let intervalId = setInterval(() => {
      
   
         const selectedTime = new Date(input.value);
         const timeValue = selectedTime - new Date();
-              console.log(selectedTime);
-        if (currentTime === null || intervalId === null) {
-            return;
+             
+        if (timeValue>=0) {
+          let timeLeft
         }
         currentTime -= delay;
         if (currentTime < 0) {
@@ -82,19 +82,19 @@ function addLeadingZero(value){
 return String(value).padStart(2, '0');
 }
 
-function timer() {
+// function timer() {
 
 
-    if (currentTime === null || intervalId === null) {
-        return;
-    }
-    currentTime -= delay;
-    if (currentTime < 0) {
-        clearInterval(intervalId);
-        intervalId = null;
-        return;
-    }
+//     if (currentTime === null || intervalId === null) {
+//         return;
+//     }
+//     currentTime -= delay;
+//     if (currentTime < 0) {
+//         clearInterval(intervalId);
+//         intervalId = null;
+//         return;
+//     }
 
-}
+// }
 
 
