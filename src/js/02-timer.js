@@ -31,8 +31,6 @@ flatpickr(inputDateEl, options);
 startBtnEl.addEventListener('click', clickBtnStart);
 
 
-
-
 function onInputDate(date) {
   const currentTate = new Date();
   console.log(date);
@@ -44,12 +42,17 @@ function onInputDate(date) {
   }
 }
 
-
 function clickBtnStart() {
-
+  const restOfTime = 0;
 
   let intervalId = setInterval(() => {
-
+    const counter = null;
+    counter -= delay;
+    if (counter < 0) {
+        clearInterval(intervalId);
+        intervalId = null;
+        return;
+    }
   
 },delay)
   if (restOfTime<0) {
@@ -82,14 +85,9 @@ function addLeadingZero(value){
 return String(value).padStart(2, '0');
 }
 
-function timer() {
-    currentTime -= delay;
-    if (currentTime < 0) {
-        clearInterval(intervalId);
-        intervalId = null;
-        return;
-    }
-
-}
+  // refs.days.textContent = addLeadingZero(days);
+  // refs.hours.textContent = addLeadingZero(hours);
+  // refs.minutes.textContent = addLeadingZero(minutes);
+  // refs.seconds.textContent = addLeadingZero(seconds);
 
 
