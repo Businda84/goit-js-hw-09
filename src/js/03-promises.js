@@ -15,7 +15,12 @@ function onSubmit(e) {
   const inputStep = Number(e.currentTarget.step.values);
   const inputAmount = Number(e.currentTarget.amount.values);
 
-
+  if (
+  delay<0||inputStep<0||inputAmount<0
+  ) {
+    
+    return
+}
   for (let position = 1; position <= delay; position += 1) {
    
     createPromise(position, delay)
