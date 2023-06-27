@@ -8,10 +8,11 @@ const inputDateEl = document.getElementById('datetime-picker')
 const startBtnEl = document.querySelector('[data-start]')
 const refs = {
     days: document.querySelector('[data-days]'),
-    hours: document.querySelector('data-hours'),
-    minutes: document.querySelector('data-minutes'),
-    seconds:document.querySelector('data-seconds'),
+    hours: document.querySelector('[data-hours]'),
+    minutes: document.querySelector('[data-minutes]'),
+    seconds:document.querySelector('[data-seconds]'),
 }
+console.dir(refs.hours);
 const delay = 1000;
 startBtnEl.disabled = true;
 const options = {
@@ -22,11 +23,11 @@ const options = {
   
     onClose(selectedDates) {
       onInputDate(selectedDates[0]);
-      console.log(onInputDate);
+     
   },
 };
 
-flatpickr(inputDateEl, options);
+const datePicker = flatpickr(inputDateEl, options);
 
 startBtnEl.addEventListener('click', clickBtnStart);
 
@@ -44,11 +45,16 @@ function onInputDate(date) {
 
 function clickBtnStart() {
   const restOfTime = 0;
-
+  const selectedDates = datePicker.selectedDates[0].getTime();
   let intervalId = setInterval(() => {
-    const counter = null;
-    counter -= delay;
-    if (counter < 0) {
+  const  diff = selectedDates - Date.now();
+  const convertedTime = convertMs(diff);
+    
+    console.log(convertedTime);
+    
+    convertMs(diff);
+    updateInterface(convertMs(diff))
+    if (diff < 1000) {
         clearInterval(intervalId);
         intervalId = null;
         return;
@@ -61,7 +67,12 @@ function clickBtnStart() {
 }
 
 };
-
+function updateInterface({ days, hours, minutes, seconds }) {
+  refs.days.textContent = addLeadingZero(days);
+  refs.hours.textContent = addLeadingZero(hours);
+  refs.minutes.textContent = addLeadingZero(minutes);
+  refs.seconds.textContent = addLeadingZero(seconds);
+}
 function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
@@ -84,10 +95,5 @@ function convertMs(ms) {
 function addLeadingZero(value){
 return String(value).padStart(2, '0');
 }
-
-  // refs.days.textContent = addLeadingZero(days);
-  // refs.hours.textContent = addLeadingZero(hours);
-  // refs.minutes.textContent = addLeadingZero(minutes);
-  // refs.seconds.textContent = addLeadingZero(seconds);
 
 
