@@ -19,7 +19,8 @@ function onClickStart() {
 }
 
 function onClickStop() {
-    startBtnEl.disabled = false;
+  startBtnEl.disabled = false;
+  stopBtnEl.disabled = true;
     clearInterval(timer);
     return
 }

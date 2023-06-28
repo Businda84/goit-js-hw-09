@@ -12,6 +12,7 @@ const refs = {
     minutes: document.querySelector('[data-minutes]'),
     seconds:document.querySelector('[data-seconds]'),
 }
+
 console.dir(refs.hours);
 const delay = 1000;
 startBtnEl.disabled = true;
@@ -41,6 +42,7 @@ function onInputDate(date) {
   } else {
     startBtnEl.disabled = false;
   }
+ 
 }
 
 function clickBtnStart() {
@@ -51,7 +53,8 @@ function clickBtnStart() {
   const convertedTime = convertMs(diff);
     
     console.log(convertedTime);
-    
+    startBtnEl.disabled = true;
+    inputDateEl.disabled = true;
     convertMs(diff);
     updateInterface(convertMs(diff))
     if (diff < 1000) {
