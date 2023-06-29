@@ -16,3 +16,44 @@ img {
   display: block;
   max-width: 100%;
 }
+.field {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  color: rgb(128, 0, 11);
+  font-size: 30px;
+}
+.value {
+  color: navy;
+  font-size: 30px;
+}
+.timer {
+  margin-top: 80px;
+  display: flex;
+  column-gap: 50px;
+ 
+
+}
+
+button[data-start] {
+  color: #212121;
+  background-color: rgb(208, 128, 128);
+  padding: 5px 10px;
+  margin-left: 20px;
+}
+button.task-1 {
+  padding: 20px;
+  color: rgb(10, 10, 45);
+  background-color: chartreuse;
+  border-radius: 10px;
+}
+#datetime-picker {
+  margin-top: 100px;
+  border-style:double;
+  padding: 10px 20px;
+  text-align: center;
+
+}
