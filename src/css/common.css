@@ -50,6 +50,9 @@ button.task-1 {
   background-color: chartreuse;
   border-radius: 10px;
 }
+button.task-1:hover {
+  background-color: rgb(148, 127, 255);
+}
 #datetime-picker {
   margin-top: 100px;
   border-style:double;

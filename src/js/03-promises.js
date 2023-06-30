@@ -12,11 +12,11 @@ function onSubmit(e) {
 
   let position = 0;
  let delay = Number(delayEl.value);
-  const inputStep = Number(stepEl.values);
-  const inputAmount = Number(amountEl.values);
+  const inputStep = Number(stepEl.value);
+  const inputAmount = Number(amountEl.value);
 
  
-  for (let i = 0; i < delay; i += 1) {
+  for (let i = 0; i < inputAmount; i += 1) {
     position += 1;
     createPromise(position, delay)
       .then(({ position, delay }) => {
